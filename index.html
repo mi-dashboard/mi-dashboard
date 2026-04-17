@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Dashboard Entregas</title>
+  <link rel="stylesheet" href="styles.css">
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+<div class="container">
+
+  <!-- LOGO -->
+  <div class="header">
+    <img src="logo.png" alt="VEMO" class="logo">
+  </div>
+
+  <h2>Entregas este mes</h2>
+  <p class="subtitle">Resumen de entregas del mes en curso</p>
+
+  <div class="kpi">
+    <span class="kpi-number">92</span>
+    <span class="kpi-label">ENTREGAS MTD</span>
+  </div>
+
+  <!-- FILTRO -->
+  <label for="filtro-tipo">Filtrar tipo de auto:</label>
+  <select id="filtro-tipo">
+    <option value="todos">Todos</option>
+  </select>
+
+  <!-- GRÁFICA AUTOS -->
+  <canvas id="graficaAutos"></canvas>
+
+  <!-- AUTOS -->
+  <h4>Share por tipo de auto</h4>
+  <table id="tabla-autos">
+    <tr>
+      <th>TIPO</th>
+      <th>CANTIDAD</th>
+      <th>SHARE</th>
+    </tr>
+  </table>
+
+  <!-- CIUDAD -->
+  <h4>Share por ciudad</h4>
+  <table id="tabla-ciudad">
+    <tr>
+      <th>CIUDAD</th>
+      <th>CANTIDAD</th>
+      <th>SHARE</th>
+    </tr>
+  </table>
+
+  <!-- GRÁFICA PLATAFORMA -->
+  <h4>Distribución por plataforma</h4>
+  <canvas id="graficaPlataforma"></canvas>
+
+  <!-- PLATAFORMA -->
+  <h4>Share por plataforma</h4>
+  <table id="tabla-plataforma">
+    <tr>
+      <th>PLATAFORMA</th>
+      <th>CANTIDAD</th>
+      <th>SHARE</th>
+    </tr>
+  </table>
+
+</div>
+
+<script src="app.js"></script>
+
+</body>
+</html>
