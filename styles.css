@@ -1,100 +1,105 @@
 body {
-  font-family: Arial;
-  background: #f4f6f9;
+  font-family: Arial, sans-serif;
+  background: #f5f6f7;
   margin: 0;
   padding: 20px;
 }
 
 .container {
-  background: white;
-  padding: 25px;
-  border-radius: 16px;
-  max-width: 900px;
+  max-width: 1400px;
   margin: auto;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-  border: 1px solid #e5e7eb;
-}
-
-h2 {
-  margin-bottom: 5px;
-}
-
-.subtitle {
-  color: #6b7280;
-  font-size: 14px;
-  margin-bottom: 20px;
-}
-
-.kpi {
-  background: #eef2f7;
-  padding: 15px 20px;
+  background: white;
+  padding: 20px;
   border-radius: 12px;
-  display: inline-block;
+}
+
+/* LAYOUT 50/50 */
+.layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  align-items: start;
+}
+
+/* KPI */
+.kpi-container {
+  display: flex;
+  gap: 10px;
   margin-bottom: 20px;
 }
 
-.kpi-number {
-  font-size: 34px;
-  font-weight: bold;
-  display: block;
+.kpi-card {
+  flex: 1;
+  background: #0F6D63;
+  color: white;
+  padding: 10px;
+  border-radius: 10px;
+  text-align: center;
 }
 
-.kpi-label {
+.kpi-title {
   font-size: 12px;
-  color: #6b7280;
 }
 
-label {
-  font-size: 14px;
+.kpi-value {
+  font-size: 22px;
   font-weight: bold;
-  margin-right: 10px;
 }
 
+/* FILTROS */
 select {
-  padding: 6px 10px;
-  border-radius: 6px;
-  border: 1px solid #d1d5db;
-  margin-bottom: 20px;
+  padding: 6px;
+  margin: 10px 10px 20px 0;
+}
+
+/* GRAFICAS */
+.chart-box {
+  width: 100%;
+  height: 300px;
+  margin: 20px 0;
+}
+
+.chart-box.small {
+  max-width: 300px;
 }
 
 canvas {
-  max-width: 100%;
-  margin-bottom: 30px;
+  width: 100% !important;
+  height: 100% !important;
 }
 
+/* TABLAS */
 table {
   width: 100%;
-  margin-top: 10px;
   border-collapse: collapse;
+  margin: 20px 0;
 }
 
 th {
-  background: #eef2f7;
-  text-align: left;
+  background: #e5eceb;
   padding: 10px;
-  font-size: 12px;
-  color: #6b7280;
+  color: #0F6D63;
 }
 
 td {
   padding: 10px;
-  border-bottom: 1px solid #e5e7eb;
+  border-bottom: 1px solid #eee;
 }
 
-h4 {
-  margin-top: 30px;
+/* OPERACIONES */
+.op-card {
+  background: #1f2937;
+  color: white;
+  padding: 12px;
+  border-radius: 10px;
   margin-bottom: 10px;
 }
-#graficaPlataforma {
-  max-width: 300px;
-  margin: 20px auto;
-  display: block;
-}
-.header {
-  text-align: center;
-  margin-bottom: 20px;
+
+.op-title {
+  font-size: 13px;
 }
 
-.logo {
-  max-width: 180px;
+.op-value {
+  font-size: 22px;
+  font-weight: bold;
 }

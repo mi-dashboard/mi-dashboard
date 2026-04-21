@@ -3,69 +3,113 @@
 <head>
   <meta charset="UTF-8">
   <title>Dashboard Entregas</title>
-  <link rel="stylesheet" href="styles.css">
 
+  <link rel="stylesheet" href="styles.css">
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
+
 <body>
 
 <div class="container">
 
-  <!-- LOGO -->
-  <div class="header">
-    <img src="logo.png" alt="VEMO" class="logo">
+  <div class="layout">
+
+    <!-- IZQUIERDA -->
+    <div class="col-left">
+
+      <h2>Entregas</h2>
+
+      <div class="kpi-container">
+        <div class="kpi-card">
+          <div class="kpi-title">Entregas MTD</div>
+          <div class="kpi-value" id="kpi-entregas">0</div>
+        </div>
+
+        <div class="kpi-card">
+          <div class="kpi-title">Meta</div>
+          <div class="kpi-value">454</div>
+        </div>
+
+        <div class="kpi-card">
+          <div class="kpi-title">Cumplimiento</div>
+          <div class="kpi-value" id="kpi-cumplimiento">0%</div>
+        </div>
+      </div>
+
+      <label>Ciudad:</label>
+      <select id="filtro-ciudad">
+        <option value="todos">Todas</option>
+      </select>
+
+      <label>Tipo auto:</label>
+      <select id="filtro-tipo">
+        <option value="todos">Todos</option>
+      </select>
+
+      <div class="chart-box">
+        <canvas id="graficaAutos"></canvas>
+      </div>
+
+      <h3>Evolución diaria</h3>
+      <div class="chart-box">
+        <canvas id="graficaDiaria"></canvas>
+      </div>
+
+      <h3>Share por tipo de auto</h3>
+      <table id="tabla-autos"></table>
+
+      <h3>Share por ciudad</h3>
+      <table id="tabla-ciudad"></table>
+
+      <h3>Distribución por plataforma</h3>
+      <div class="chart-box small">
+        <canvas id="graficaPlataforma"></canvas>
+      </div>
+
+      <h3>Share por plataforma</h3>
+      <table id="tabla-plataforma"></table>
+
+    </div>
+
+    <!-- DERECHA -->
+    <div class="col-right">
+
+      <h2>Operaciones</h2>
+
+      <div class="op-card">
+        <div class="op-title">Stock total</div>
+        <div class="op-value" id="stock-total">0</div>
+      </div>
+
+      <div class="op-card">
+        <div class="op-title">Nuevos</div>
+        <div class="op-value" id="stock-nuevos">0</div>
+      </div>
+
+      <div class="op-card">
+        <div class="op-title">Seminuevos</div>
+        <div class="op-value" id="stock-usados">0</div>
+      </div>
+
+      <div class="op-card">
+        <div class="op-title">Espacios libres</div>
+        <div class="op-value" id="stock-libres">0</div>
+      </div>
+
+      <div class="op-card">
+        <div class="op-title">% Ocupación</div>
+        <div class="op-value" id="stock-ocupacion">0%</div>
+      </div>
+
+      <h3>Modelos NUEVOS</h3>
+      <table id="tabla-nuevos"></table>
+
+      <h3>Modelos SEMINUEVOS</h3>
+      <table id="tabla-seminuevos"></table>
+
+    </div>
+
   </div>
-
-  <h2>Entregas este mes</h2>
-  <p class="subtitle">Resumen de entregas del mes en curso</p>
-
-  <div class="kpi">
-    <span class="kpi-number">92</span>
-    <span class="kpi-label">ENTREGAS MTD</span>
-  </div>
-
-  <!-- FILTRO -->
-  <label for="filtro-tipo">Filtrar tipo de auto:</label>
-  <select id="filtro-tipo">
-    <option value="todos">Todos</option>
-  </select>
-
-  <!-- GRÁFICA AUTOS -->
-  <canvas id="graficaAutos"></canvas>
-
-  <!-- AUTOS -->
-  <h4>Share por tipo de auto</h4>
-  <table id="tabla-autos">
-    <tr>
-      <th>TIPO</th>
-      <th>CANTIDAD</th>
-      <th>SHARE</th>
-    </tr>
-  </table>
-
-  <!-- CIUDAD -->
-  <h4>Share por ciudad</h4>
-  <table id="tabla-ciudad">
-    <tr>
-      <th>CIUDAD</th>
-      <th>CANTIDAD</th>
-      <th>SHARE</th>
-    </tr>
-  </table>
-
-  <!-- GRÁFICA PLATAFORMA -->
-  <h4>Distribución por plataforma</h4>
-  <canvas id="graficaPlataforma"></canvas>
-
-  <!-- PLATAFORMA -->
-  <h4>Share por plataforma</h4>
-  <table id="tabla-plataforma">
-    <tr>
-      <th>PLATAFORMA</th>
-      <th>CANTIDAD</th>
-      <th>SHARE</th>
-    </tr>
-  </table>
 
 </div>
 
