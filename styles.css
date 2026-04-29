@@ -103,3 +103,18 @@ td {
   font-size: 22px;
   font-weight: bold;
 }
+/* 🔥 FIX REAL DE ALINEACIÓN */
+.col-left h2,
+.col-left h3,
+.col-right h2,
+.col-right h3 {
+  margin: 20px 0 10px 0;
+  padding: 0;
+  text-align: left;
+  width: 100%;
+  display: block;
+}
+h2, h3 {
+  position: relative;
+  left: 10px;
+}

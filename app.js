@@ -12,6 +12,25 @@ const COLORES = {
   gris: "#6b7280"
 };
 
+// 🔥 ANIMACIÓN KPI
+function animarValor(id, valorFinal) {
+  let actual = 0;
+  const duracion = 800;
+  const pasos = 40;
+  const incremento = valorFinal / pasos;
+
+  const intervalo = setInterval(() => {
+    actual += incremento;
+
+    if (actual >= valorFinal) {
+      actual = valorFinal;
+      clearInterval(intervalo);
+    }
+
+    document.getElementById(id).textContent = Math.floor(actual);
+  }, duracion / pasos);
+}
+
 // 🔥 PARSEADOR ROBUSTO
 function parseCSV(text) {
   return text
@@ -85,11 +104,12 @@ fetch("data.csv")
       });
 
       // KPI
-      document.getElementById("kpi-entregas").textContent = total;
+      animarValor("kpi-entregas", total);
+
       document.getElementById("kpi-cumplimiento").textContent =
         total === 0 ? "0%" : ((total/META)*100).toFixed(0)+"%";
 
-      // 📈 EVOLUCIÓN DIARIA
+      // ================= EVOLUCIÓN DIARIA =================
       const dias = Object.keys(diario).sort((a,b)=>a-b);
       const vals = dias.map(d=>diario[d]);
 
@@ -100,16 +120,25 @@ fetch("data.csv")
         data:{
           labels:dias,
           datasets:[{
-            data:vals,
+            data: vals.map(() => 0),
             borderColor: COLORES.verde,
             backgroundColor: COLORES.verde,
             tension: 0.3
           }]
         },
-        options:{responsive:true,maintainAspectRatio:false}
+        options:{
+          responsive:true,
+          maintainAspectRatio:false,
+          animation:{ duration:1400, easing:"easeOutCubic" }
+        }
       });
 
-      // 🚗 AUTOS
+      setTimeout(() => {
+        graficaDiaria.data.datasets[0].data = vals;
+        graficaDiaria.update();
+      }, 200);
+
+      // ================= AUTOS =================
       let labels=[], valores=[];
       const tablaAutos = document.getElementById("tabla-autos");
       tablaAutos.innerHTML="<tr><th>TIPO</th><th>CANTIDAD</th><th>SHARE</th></tr>";
@@ -128,14 +157,23 @@ fetch("data.csv")
         data:{
           labels,
           datasets:[{
-            data:valores,
-            backgroundColor: "#0F6D63"
+            data: valores.map(() => 0),
+            backgroundColor: COLORES.verde
           }]
         },
-        options:{responsive:true,maintainAspectRatio:false}
+        options:{
+          responsive:true,
+          maintainAspectRatio:false,
+          animation:{ duration:1200, easing:"easeOutQuart" }
+        }
       });
 
-      // 🌎 CIUDAD
+      setTimeout(() => {
+        graficaAutos.data.datasets[0].data = valores;
+        graficaAutos.update();
+      }, 200);
+
+      // ================= CIUDAD =================
       const tablaCiudad = document.getElementById("tabla-ciudad");
       tablaCiudad.innerHTML="<tr><th>CIUDAD</th><th>CANTIDAD</th><th>SHARE</th></tr>";
 
@@ -144,7 +182,7 @@ fetch("data.csv")
         tablaCiudad.innerHTML+=`<tr><td>${k}</td><td>${v}</td><td>${share}</td></tr>`;
       });
 
-      // 📊 PLATAFORMA (COLORES CORRECTOS 🔥)
+      // ================= PLATAFORMA =================
       let labelsP=[], valoresP=[], coloresP=[];
       const tablaPlat = document.getElementById("tabla-plataforma");
       tablaPlat.innerHTML="<tr><th>PLATAFORMA</th><th>CANTIDAD</th><th>SHARE</th></tr>";
@@ -177,14 +215,23 @@ fetch("data.csv")
         data:{
           labels:labelsP,
           datasets:[{
-            data:valoresP,
+            data: valoresP.map(() => 0),
             backgroundColor: coloresP,
             borderColor:"#fff",
             borderWidth:2
           }]
         },
-        options:{responsive:true,maintainAspectRatio:false}
+        options:{
+          responsive:true,
+          maintainAspectRatio:false,
+          animation:{ animateRotate:true, duration:1200 }
+        }
       });
+
+      setTimeout(() => {
+        graficaPlataforma.data.datasets[0].data = valoresP;
+        graficaPlataforma.update();
+      }, 200);
     }
 
     filtroCiudad.onchange = render;
@@ -228,10 +275,11 @@ fetch("stock.csv")
     const totalEspacios = ocupados + libres;
     const ocupacion = totalEspacios ? ((ocupados/totalEspacios)*100).toFixed(0) : 0;
 
-    document.getElementById("stock-total").textContent = ocupados;
-    document.getElementById("stock-nuevos").textContent = nuevos;
-    document.getElementById("stock-usados").textContent = usados;
-    document.getElementById("stock-libres").textContent = libres;
+    animarValor("stock-total", ocupados);
+    animarValor("stock-nuevos", nuevos);
+    animarValor("stock-usados", usados);
+    animarValor("stock-libres", libres);
+
     document.getElementById("stock-ocupacion").textContent = ocupacion+"%";
 
     const tablaN = document.getElementById("tabla-nuevos");
